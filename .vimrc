@@ -96,6 +96,7 @@ if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 " }}}
+"End dein Scripts-------------------------
 
 " 引数なしでvimを開くとNERDTreeを起動
 let file_name = expand('%')
@@ -103,7 +104,6 @@ if has('vim_starting') &&  file_name == ''
  autocmd VimEnter * NERDTree ./
 endif
 
-"End dein Scripts-------------------------
 
 syntax on
 colorscheme default
