@@ -58,9 +58,6 @@ repo = 'tomtom/tcomment_vim'
 repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
-repo = 'arcticicestudio/nord-vim'
-
-[[plugins]]
 repo = 'fatih/vim-go'
 
 [[plugins]]
@@ -72,8 +69,3 @@ repo = 'haya14busa/incsearch.vim'
 [[plugins]]
 repo = 'simeji/winresizer'
 
-[[plugins]]
-repo = 'mattn/excelview-vim'
-
-[[plugins]]
-repo = 'mattn/webapi-vim'
