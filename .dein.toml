@@ -27,12 +27,6 @@ depends = 'neomru.vim'
 repo = 'nathanaelkane/vim-indent-guides'
 
 [[plugins]]
-repo = 'Shougo/neosnippet'
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
 repo = 'davidhalter/jedi-vim'
 on_ft = 'python'
 
