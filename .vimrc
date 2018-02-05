@@ -1,3 +1,5 @@
+syntax on
+
 " 文字コードをUTF-8に設定
 set encoding=utf-8
 
@@ -43,6 +45,10 @@ set showmatch
 " コマンドラインモードでtabキーによるファイル名補完
 set wildmenu
 
+" 検索をハイライト
+set hlsearch
+set incsearch
+
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
@@ -69,34 +75,40 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-" dein settings {{{
-let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.vim') : $XDG_CACHE_HOME
-
 " プラグインが実際にインストールされるディレクトリ
-let s:dein_dir = s:cache_home . '/dein'
-
-" dein.vim本体
+let s:dein_dir = expand('~/.cache/dein')
+" dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-if !isdirectory(s:dein_repo_dir)
-  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
-let &runtimepath = s:dein_repo_dir .",". &runtimepath
-" プラグイン読み込み＆キャッシュ作成
 
-let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/.dein.toml'
+" 設定開始
 if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
-  call dein#load_toml(s:toml_file)
+  call dein#begin(s:dein_dir)
+
+  " プラグインリストを収めた TOML ファイル
+  " 予め TOML ファイル（後述）を用意しておく
+  let g:rc_dir    = expand('~/')
+  let s:toml      = g:rc_dir . '.dein.toml'
+
+  " TOML を読み込み、キャッシュしておく
+  call dein#load_toml(s:toml,      {'lazy': 0})
+
+  " 設定終了
   call dein#end()
   call dein#save_state()
 endif
-" 不足プラグインの自動インストール
-if has('vim_starting') && dein#check_install()
+
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
   call dein#install()
 endif
-" }}}
-"End dein Scripts-------------------------
 
 " 引数なしでvimを開くとNERDTreeを起動
 let file_name = expand('%')
@@ -104,9 +116,8 @@ if has('vim_starting') &&  file_name == ''
  autocmd VimEnter * NERDTree ./
 endif
 
+colorscheme nord
 
-syntax on
-colorscheme default
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python3 %
@@ -129,8 +140,17 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " Macdownで現在のバッファのファイルを開く
 command Macdown :!open -a macdown %
 
+" neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#max_list = 50
+
 " vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
 let g:go_bin_path = $GOPATH.'/bin'
+autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+autocmd FileType go :match goErr /\<err\>/
 filetype plugin indent on
 
 "vimtex
@@ -168,10 +188,6 @@ nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 autocmd BufWritePost,FileWritePost *.tex QuickRun tex
 command! OpenBro execute "OpenBrowser" expand("%:p")
 
-"incsearch
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-
 augroup fileTypeIndent
     autocmd!
     autocmd BufNewFile,BufRead *.tex setlocal tabstop=2 softtabstop=2 shiftwidth=2
@@ -194,3 +210,4 @@ if &term =~ "xterm"
 
   inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
+
