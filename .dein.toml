@@ -63,5 +63,3 @@ repo = 'simeji/winresizer'
 [[plugins]]
 repo = 'arcticicestudio/nord-vim'
 
-[[plugins]]
-repo = 'osyo-manga/vim-monster'
