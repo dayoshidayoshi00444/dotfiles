@@ -61,5 +61,4 @@ repo = 'mattn/emmet-vim'
 repo = 'simeji/winresizer'
 
 [[plugins]]
-repo = 'arcticicestudio/nord-vim'
-
+repo = 'flazz/vim-colorschemes'

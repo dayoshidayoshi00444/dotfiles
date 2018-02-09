@@ -1,5 +1,7 @@
 syntax on
 
+set background=dark
+
 " 文字コードをUTF-8に設定
 set encoding=utf-8
 
@@ -11,6 +13,9 @@ set fileformats=unix,dos,mac
 
 " タイトルの表示
 set title
+
+" 現在行のハイライト
+set cursorline
 
 " 行番号の表示
 set number
@@ -61,7 +66,7 @@ set printfont=CicaRegular:h12
 set ambiwidth=double
 
 " マウスを有効
-set mouse=a
+" set mouse=a
 
 " jjでinsertからnormal
 inoremap jj <ESC>
@@ -110,13 +115,13 @@ if dein#check_install()
   call dein#install()
 endif
 
+colorscheme lucid
+
 " 引数なしでvimを開くとNERDTreeを起動
 let file_name = expand('%')
 if has('vim_starting') &&  file_name == ''
  autocmd VimEnter * NERDTree ./
 endif
-
-colorscheme nord
 
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
@@ -149,6 +154,8 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_bin_path = $GOPATH.'/bin'
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+set completeopt=menu,preview
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 filetype plugin indent on
@@ -165,7 +172,7 @@ nmap <Leader>r <Plug>(quickrun)
         \   "_": {
         \     "hook/close_quickfix/enable_success" : 1,
         \     "hook/close_buffer/enable_failure" : 1,
-        \     "outputter" : "multi:buffer:quickfix",
+        \     "outputter" : 'error',
         \     "hook/echo/enable" : 1,
         \     "hook/echo/wait" : 20,
         \     "runner": "vimproc",
