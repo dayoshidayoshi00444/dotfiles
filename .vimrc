@@ -53,6 +53,7 @@ set wildmenu
 " 検索をハイライト
 set hlsearch
 set incsearch
+nnoremap <ESC><ESC> :nohl<CR>
 
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
@@ -131,6 +132,7 @@ autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python3 %
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+let g:indent_guides_guide_exclude_filetypes = ['nerdtree']
 
 " Markdown
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -158,6 +160,7 @@ exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
+autocmd FileType go setl tabstop=4 noexpandtab shiftwidth=4 
 filetype plugin indent on
 
 "vimtex
@@ -175,6 +178,7 @@ nmap <Leader>r <Plug>(quickrun)
         \     "outputter" : 'error',
         \     "hook/echo/enable" : 1,
         \     "hook/echo/wait" : 20,
+        \ 'outputter/error/error': 'quickfix',
         \     "runner": "vimproc",
         \     'hook/time/enable' : 1
         \   },
