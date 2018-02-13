@@ -1,5 +1,6 @@
 syntax on
 
+set t_Co=256
 set background=dark
 
 " 文字コードをUTF-8に設定
@@ -126,13 +127,18 @@ endif
 
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python3 %
+
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='atomic'
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_powerline_fonts = 1
 
 " vim-indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
-let g:indent_guides_guide_exclude_filetypes = ['nerdtree']
+let g:indent_guides_exclude_filetypes = ['go', 'nerdtree']
 
 " Markdown
 au BufRead,BufNewFile *.md set filetype=markdown
