@@ -20,10 +20,6 @@ repo = 'scrooloose/nerdtree'
 repo = 'Shougo/neocomplete.vim'
 
 [[plugins]]
-repo = 'Shougo/unite.vim'
-depends = 'neomru.vim'
-
-[[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 
 [[plugins]]
@@ -62,3 +58,12 @@ repo = 'simeji/winresizer'
 
 [[plugins]]
 repo = 'flazz/vim-colorschemes'
+
+[[plugins]]
+repo = 'twitvim/twitvim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'

@@ -33,7 +33,6 @@ set shiftwidth=4
 
 " キーボードでtabを入力した時スペース4つに 
 set softtabstop=4
-
 set smarttab
 
 " 改行時に自動でインデント
@@ -51,14 +50,32 @@ set showmatch
 " コマンドラインモードでtabキーによるファイル名補完
 set wildmenu
 
+" スワップファイルを作成しない
+set noswapfile
+
+" バックアップを取らない
+set nobackup
+
+set nowritebackup
+
+"set laststatus=2
+
 " 検索をハイライト
 set hlsearch
 set incsearch
+
+" esc2回でハイライトを消す
 nnoremap <ESC><ESC> :nohl<CR>
 
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
+
+" 画面自体の移動
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
 
 " フォントの設定
 set guifont=Cica-Regular:h16
@@ -107,6 +124,12 @@ if dein#load_state(s:dein_dir)
   " TOML を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
 
+  if has('python3')
+    call dein#add('Shougo/denite.nvim')
+  else
+    call dein#add('Shougo/unite.vim')
+  endif
+
   " 設定終了
   call dein#end()
   call dein#save_state()
@@ -125,8 +148,14 @@ if has('vim_starting') &&  file_name == ''
  autocmd VimEnter * NERDTree ./
 endif
 
+" ファイルタイプごとにインデントの設定
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType go setl tabstop=4 noexpandtab shiftwidth=4 
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.tex setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -164,9 +193,8 @@ let g:go_highlight_structs = 1
 let g:go_bin_path = $GOPATH.'/bin'
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
-autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+autocmd FileType go :highlight goErr cterm=bold ctermfg=244
 autocmd FileType go :match goErr /\<err\>/
-autocmd FileType go setl tabstop=4 noexpandtab shiftwidth=4 
 filetype plugin indent on
 
 "vimtex
@@ -177,14 +205,14 @@ let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 "vim-quickrun
 nmap <Leader>r <Plug>(quickrun)
- let g:quickrun_config = {
-        \   "_": {
+let g:quickrun_config = {
+        \    "_": {
         \     "hook/close_quickfix/enable_success" : 1,
         \     "hook/close_buffer/enable_failure" : 1,
         \     "outputter" : 'error',
         \     "hook/echo/enable" : 1,
         \     "hook/echo/wait" : 20,
-        \ 'outputter/error/error': 'quickfix',
+        \     'outputter/error/error': 'quickfix',
         \     "runner": "vimproc",
         \     'hook/time/enable' : 1
         \   },
@@ -200,15 +228,11 @@ nmap <Leader>r <Plug>(quickrun)
         \     'exec': ['%c -cd %o %s']
         \   },
         \ }
+"set splitright
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 
 autocmd BufWritePost,FileWritePost *.tex QuickRun tex
 command! OpenBro execute "OpenBrowser" expand("%:p")
-
-augroup fileTypeIndent
-    autocmd!
-    autocmd BufNewFile,BufRead *.tex setlocal tabstop=2 softtabstop=2 shiftwidth=2
-augroup END
 
 " winresizer
 let g:winresizer_start_key = '<C-T>'
@@ -227,4 +251,30 @@ if &term =~ "xterm"
 
   inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
+
+" TwitVim
+let twitvim_count = 40
+
+" neosnippet
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+autocmd BufNewFile *.c 0r ~/.vim/templete/c.txt
 

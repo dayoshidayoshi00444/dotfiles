@@ -1,0 +1,9 @@
+
+"             "hook/close_quickfix/enable_success" : 1,
+"             "hook/close_buffer/enable_failure" : 1,
+"             "outputter" : 'error',
+"             "hook/echo/enable" : 1,
+"             "hook/echo/wait" : 20,
+"             'outputter/error/error': 'quickfix',
+"             "runner": "vimproc",
+"             'hook/time/enable' : 1
