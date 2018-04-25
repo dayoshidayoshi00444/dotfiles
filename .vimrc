@@ -38,6 +38,10 @@ set smarttab
 " 改行時に自動でインデント
 set smartindent
 
+" 不可視文字を表示
+set list
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+
 " バックスペースの設定
 set backspace=indent,eol,start
 
@@ -185,12 +189,14 @@ command Macdown :!open -a macdown %
 " neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#max_list = 50
+let g:neocomplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 
 " vim-go
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_bin_path = $GOPATH.'/bin'
+let g:go_gocode_unimported_packages = 0
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 autocmd FileType go :highlight goErr cterm=bold ctermfg=244
@@ -278,3 +284,8 @@ endif
 
 autocmd BufNewFile *.c 0r ~/.vim/templete/c.txt
 
+" neoterm
+let g:neoterm_fixedsize = 1
+let g:neoterm_size = 12
+let g:neoterm_default_mod = "botright"
+xmap gx <Plug>(neoterm-repl-send)
