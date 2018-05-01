@@ -186,11 +186,6 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " Macdownで現在のバッファのファイルを開く
 command Macdown :!open -a macdown %
 
-" neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#max_list = 50
-let g:neocomplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-
 " vim-go
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -289,3 +284,11 @@ let g:neoterm_fixedsize = 1
 let g:neoterm_size = 12
 let g:neoterm_default_mod = "botright"
 xmap gx <Plug>(neoterm-repl-send)
+
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+
+" deoplete-clang
+let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/llvm/6.0.0/lib/libclang.dylib"
+let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/6.0.0/lib/clang"
