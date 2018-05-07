@@ -228,25 +228,11 @@ let g:quickrun_config = {
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 
 autocmd BufWritePost,FileWritePost *.tex QuickRun tex
-command! OpenBro execute "OpenBrowser" expand("%:p")
 
 " winresizer
 let g:winresizer_start_key = '<C-T>'
 let g:winresizer_vert_resize = 2
 let g:winresizer_horiz_resize = 2
-
-if &term =~ "xterm"
-  let &t_SI .= "\e[?2004h"
-  let &t_EI .= "\e[?2004l"
-  let &pastetoggle = "\e[201~"
-
-  function XTermPasteBegin(ret)
-    set paste
-    return a:ret
-  endfunction
-
-  inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-endif
 
 " TwitVim
 let twitvim_count = 40
@@ -271,8 +257,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-
-autocmd BufNewFile *.c 0r ~/.vim/templete/c.txt
 
 " neoterm
 let g:neoterm_fixedsize = 1
