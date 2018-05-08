@@ -62,8 +62,6 @@ set nobackup
 
 set nowritebackup
 
-"set laststatus=2
-
 " 検索をハイライト
 set hlsearch
 set incsearch
@@ -87,9 +85,6 @@ set printfont=CicaRegular:h12
 
 " 全角文字の幅を2に固定
 set ambiwidth=double
-
-" マウスを有効
-set mouse=a
 
 " jjでinsertからnormal
 inoremap jj <ESC>
