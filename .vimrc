@@ -89,7 +89,7 @@ set printfont=CicaRegular:h12
 set ambiwidth=double
 
 " マウスを有効
-" set mouse=a
+set mouse=a
 
 " jjでinsertからnormal
 inoremap jj <ESC>
