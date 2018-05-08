@@ -234,9 +234,6 @@ let g:winresizer_start_key = '<C-T>'
 let g:winresizer_vert_resize = 2
 let g:winresizer_horiz_resize = 2
 
-" TwitVim
-let twitvim_count = 40
-
 " neosnippet
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
