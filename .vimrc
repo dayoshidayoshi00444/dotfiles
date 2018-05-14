@@ -59,25 +59,15 @@ set noswapfile
 
 " バックアップを取らない
 set nobackup
-
 set nowritebackup
 
 " 検索をハイライト
 set hlsearch
 set incsearch
 
-" esc2回でハイライトを消す
-nnoremap <ESC><ESC> :nohl<CR>
-
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
-
-" 画面自体の移動
-nnoremap sJ <C-w>J
-nnoremap sK <C-w>K
-nnoremap sL <C-w>L
-nnoremap sH <C-w>H
 
 " フォントの設定
 set guifont=Cica-Regular:h16
@@ -88,6 +78,9 @@ set ambiwidth=double
 
 " jjでinsertからnormal
 inoremap jj <ESC>
+
+" esc2回でハイライトを消す
+nnoremap <ESC><ESC> :nohl<CR>
 
 if !&compatible
   set nocompatible
@@ -256,9 +249,12 @@ let g:neoterm_size = 12
 let g:neoterm_default_mod = "botright"
 xmap gx <Plug>(neoterm-repl-send)
 
-" Use deoplete
+" deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+
+" deopleteのpreviewをインサートモードから抜けた時に閉じる
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " deoplete-clang
 let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/llvm/6.0.0/lib/libclang.dylib"
