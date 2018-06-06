@@ -1,5 +1,5 @@
 sudo apt install -y git gettext libtinfo-dev libacl1-dev libgpm-dev build-essential python3-dev lua5.2 liblua5.2-dev luajit libluajit-5.1 autoconf automake cproto
-git clone git clone https://github.com/vim/vim.git
+git clone https://github.com/vim/vim.git
 cd ~/vim
 git pull
 cd src
