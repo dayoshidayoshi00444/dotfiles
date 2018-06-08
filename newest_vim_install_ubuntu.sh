@@ -1,4 +1,4 @@
-sudo apt install -y git gettext libtinfo-dev libacl1-dev libgpm-dev build-essential python3-dev lua5.2 liblua5.2-dev luajit libluajit-5.1 autoconf automake cproto
+sudo apt install -y clang git gettext libtinfo-dev libacl1-dev libgpm-dev build-essential python3-dev lua5.2 liblua5.2-dev luajit libluajit-5.1 autoconf automake cproto
 git clone https://github.com/vim/vim.git ~/vim
 cd ~/vim
 git pull
