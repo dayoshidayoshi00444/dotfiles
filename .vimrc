@@ -142,10 +142,9 @@ endif
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd FileType go setl tabstop=4 noexpandtab shiftwidth=4 
-augroup fileTypeIndent
-    autocmd!
-    autocmd BufNewFile,BufRead *.tex setlocal tabstop=2 softtabstop=2 shiftwidth=2
-augroup END
+autocmd FileType tex setl tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType markdown setl tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType vim setl tabstop=2 softtabstop=2 shiftwidth=2
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -271,3 +270,6 @@ endif
 " ale
 let g:ale_sign_column_always = 1
 let g:airline#extensions#ale#enabled = 1
+" 保存時のみリンターを走らせる
+let g:ale_lint_on_text_changed = 'never'
+
