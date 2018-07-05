@@ -69,10 +69,6 @@ set incsearch
 nnoremap j gj
 nnoremap k gk
 
-" フォントの設定
-set guifont=Cica-Regular:h16
-set printfont=CicaRegular:h12
-
 " 全角文字の幅を2に固定
 set ambiwidth=double
 
@@ -273,3 +269,5 @@ let g:airline#extensions#ale#enabled = 1
 " 保存時のみリンターを走らせる
 let g:ale_lint_on_text_changed = 'never'
 
+" gonvim
+let g:gonvim_start_fullscreen = 1

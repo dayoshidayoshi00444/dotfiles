@@ -74,3 +74,9 @@ repo = 'Shougo/unite.vim'
 
 [[plugins]]
 repo = 'w0rp/ale'
+
+[[plugins]]
+repo = 'dzhou121/gonvim-fuzzy'
+
+[[plugins]]
+repo = 'equalsraf/neovim-gui-shim'
