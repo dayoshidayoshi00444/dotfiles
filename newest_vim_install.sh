@@ -1,5 +1,3 @@
-mkdir -p ~/usr/bin
-export PATH=$PATH:$HOME/usr/bin
 git clone https://github.com/vim/vim.git ~/vim
 cd ~/vim
 git pull
@@ -7,4 +5,4 @@ cd src
 make distclean
 ./configure --with-features=huge --enable-perlinterp --enable-python3interp --enable-rubyinterp --enable-luainterp --with-luajit --with-lua-prefix=/usr/local --enable-fail-if-missing
 make
-make install
+sudo make install
