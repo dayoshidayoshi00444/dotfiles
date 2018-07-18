@@ -1,4 +1,4 @@
-git clone https://github.com/vim/vim.git
+git clone https://github.com/vim/vim.git ~/vim
 cd ~/vim
 git pull
 cd src
