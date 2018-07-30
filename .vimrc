@@ -129,6 +129,7 @@ colorscheme lucid
 let file_name = expand('%')
 if has('vim_starting') &&  file_name == ''
   autocmd VimEnter * NERDTree ./
+  " git管理下のディレクトリの時git pullを自動で行う
   if isdirectory('./.git/')
     execute '!git pull'
   endif
@@ -235,11 +236,6 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-"if has('conceal')
-"  set conceallevel=2 concealcursor=niv
-"endif
 
 " neoterm
 let g:neoterm_fixedsize = 1
