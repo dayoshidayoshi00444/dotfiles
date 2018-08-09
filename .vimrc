@@ -142,6 +142,10 @@ autocmd FileType go setl tabstop=4 noexpandtab shiftwidth=4
 autocmd FileType tex setl tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType markdown setl tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType vim setl tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType html setl tabstop=2 softtabstop=2 shiftwidth=2
+"
+" htmlの閉じタグを自動補完
+autocmd FileType html inoremap <buffer> </ </<C-x><C-o>
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
