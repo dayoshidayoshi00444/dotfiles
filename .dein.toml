@@ -82,9 +82,6 @@ repo = 'dzhou121/gonvim-fuzzy'
 repo = 'equalsraf/neovim-gui-shim'
 
 [[plugins]]
-repo = 'Townk/vim-autoclose'
-
-[[plugins]]
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
