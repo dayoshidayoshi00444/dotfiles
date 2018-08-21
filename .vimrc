@@ -271,3 +271,7 @@ let g:ale_lint_on_text_changed = 'never'
 
 " gonvim
 let g:gonvim_start_fullscreen = 1
+
+" fzf
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
