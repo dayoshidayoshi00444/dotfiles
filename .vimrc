@@ -185,7 +185,7 @@ autocmd FileType go :match goErr /\<err\>/
 filetype plugin indent on
 
 "vimtex
-let g:vimtex_latexmk_opetions = '-pdfdvi'
+let g:vimtex_latexmk_options = '-pdfdvi'
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '@line @pdf @tex'
 let g:vimtex_compiler_latexmk = {'callback' : 0}
