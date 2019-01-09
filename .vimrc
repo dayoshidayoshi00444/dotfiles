@@ -188,7 +188,19 @@ filetype plugin indent on
 let g:vimtex_latexmk_options = '-pdfdvi'
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '@line @pdf @tex'
-let g:vimtex_compiler_latexmk = {'callback' : 0}
+let g:vimtex_compiler_latexmk = {
+        \ 'background': 1,
+        \ 'build_dir': '',
+        \ 'continuous': 1,
+        \ 'callback' : 0,
+        \ 'options': [
+        \   '-pdfdvi',
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \],
+        \}
 
 "vim-quickrun
 nmap <Leader>r <Plug>(quickrun)
@@ -222,8 +234,8 @@ autocmd BufWritePost,FileWritePost *.tex QuickRun tex
 
 " winresizer
 let g:winresizer_start_key = '<C-T>'
-let g:winresizer_vert_resize = 2
-let g:winresizer_horiz_resize = 2
+let g:winresizer_vert_resize = 4
+let g:winresizer_horiz_resize = 4
 
 " neosnippet
 " Plugin key-mappings.
