@@ -224,7 +224,18 @@ let g:quickrun_config = {
         \     'outputter/buffer/split': ':60split',
         \     'command' : 'latexmk',
         \     'cmdopt': '-pv',
-        \     'exec': ['%c -cd %o %s']
+        \     'hook/sweep/files' : [
+        \                           '%S:p:r.aux',
+        \                           '%S:p:r.dvi',
+        \                           '%S:p:r.fdb_latexmk',
+        \                           '%S:p:r.fls',
+        \                           '%S:p:r.log',
+        \                           '%S:p:r.toc',
+        \                           '%S:p:r.lot',
+        \                           '%S:p:r.lof',
+        \                           '%S:p:r.out'
+        \                           ],
+        \     'exec': ['%c -cd %o %s'],
         \   },
         \ }
 "set splitright
@@ -292,3 +303,7 @@ let g:ale_lint_on_text_changed = 'never'
 " gonvim
 let g:gonvim_start_fullscreen = 1
 
+" fzf
+" :Fileでファイルをプレビュー
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
