@@ -123,16 +123,12 @@ if dein#check_install()
   call dein#install()
 endif
 
-colorscheme lucid
+colorscheme iceberg
 
 " 引数なしでvimを開くとNERDTreeを起動
 let file_name = expand('%')
 if has('vim_starting') &&  file_name == ''
   autocmd VimEnter * NERDTree ./
-  " git管理下のディレクトリの時git pullを自動で行う
-  if isdirectory('./.git/')
-    execute '!git pull'
-  endif
 endif
 
 " ファイルタイプごとにインデントの設定
