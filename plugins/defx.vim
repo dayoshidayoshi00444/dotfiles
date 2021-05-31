@@ -1,3 +1,7 @@
+call defx#custom#option('_', {
+  \ 'columns': 'indent:icons:filename:mark',
+  \ })
+
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
@@ -68,3 +72,6 @@ endfunction
 if !argc()
   autocmd VimEnter * Defx
 endif
+
+" Leader+dでDefxコマンドを実行
+nnoremap <Leader>d :Defx<CR>

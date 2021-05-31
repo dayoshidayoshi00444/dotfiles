@@ -21,9 +21,6 @@ repo = 'tyru/open-browser.vim'
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 
-#[[plugins]]
-#repo = 'lervag/vimtex'
-
 [[plugins]]
 repo = 'tomtom/tcomment_vim'
 
@@ -69,6 +66,9 @@ source ~/.config/nvim/plugins/defx.vim
 '''
 
 [[plugins]]
+repo = 'kristijanhusak/defx-icons'
+
+[[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 hook_add = '''
 source ~/.config/nvim/plugins/vim-lsp.vim
@@ -83,12 +83,27 @@ repo = 'rust-lang/rust.vim'
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 
-[[plugins]]
-repo = 'prabirshrestha/async.vim'
+#[[plugins]]
+#repo = 'prabirshrestha/async.vim'
+
+#[[plugins]]
+#repo = 'prabirshrestha/asyncomplete.vim'
+
+#[[plugins]]
+#repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
-repo = 'prabirshrestha/asyncomplete.vim'
+repo = 'iamcco/markdown-preview.nvim'
+build = 'sh -c "cd app & yarn install" '
 
 [[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
+repo = 'Shougo/deol.nvim'
 
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+
+[[plugins]]
+repo = 'mattn/sonictemplate-vim'
+
+[[plugins]]
+repo = 'mattn/vim-maketable'

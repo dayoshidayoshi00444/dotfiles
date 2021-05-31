@@ -1,5 +1,8 @@
 syntax on
 
+" Leaderキーをスペースに設定
+let g:mapleader = "\<Space>"
+
 set t_Co=256
 set background=dark
 
@@ -11,6 +14,12 @@ set fileencodings=utf-8,shift-jis
 
 " 改行コードの自動判別
 set fileformats=unix,dos,mac
+
+" ミュート
+set belloff=all
+
+" 検索時大文字小文字を区別しない
+set ignorecase
 
 " タイトルの表示
 set title
@@ -66,7 +75,7 @@ set hlsearch
 set incsearch
 
 " 全角文字の幅を2に固定
-set ambiwidth=double
+"set ambiwidth=double
 
 set termguicolors
 
@@ -89,12 +98,18 @@ autocmd FileType vim setl tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType html setl tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType typescript setl tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType javascript setl tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType json setl tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType rust setl tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
-"
 " htmlの閉じタグを自動補完
 autocmd FileType html inoremap <buffer> </ </<C-x><C-o>
 
 " python3
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 
-set runtimepath^=~/deno/vim-plugin/dps-helloworld
+" grepした結果をquickfixに表示する {{{
+augroup grepwindow
+  au!
+  au QuickFixCmdPost *grep* cwindow
+augroup END
+" }}}
